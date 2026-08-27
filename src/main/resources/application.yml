@@ -10,24 +10,22 @@ spring:
 
 eureka:
   instance:
-    hostname: ${EUREKA_HOSTNAME:vm-node-a.platform}
-    prefer-ip-address: false
+    prefer-ip-address: true
+    appname: service-registry
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://vm-node-a.platform:8761/eureka/,http://vm-node-b.platform:8761/eureka/,http://vm-node-c.platform:8761/eureka/
-
+      defaultZone: http://localhost:8761/eureka/,http://vm-node-a.platform:8761/eureka/,http://vm-node-b.platform:8761/eureka/,http://vm-node-c.platform:8761/eureka/
   server:
     enable-self-preservation: false
-    eviction-interval-timer-in-ms: 5000
+    eviction-interval-timer-in-ms: 60000
 
 management:
   endpoints:
     web:
       exposure:
         include: health,info
-
   endpoint:
     health:
       show-details: always
