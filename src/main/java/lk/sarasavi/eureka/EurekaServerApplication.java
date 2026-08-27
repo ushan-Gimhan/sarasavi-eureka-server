@@ -25,7 +25,7 @@ public class EurekaServerApplication {
     public void init() {
         if (eurekaClientConfigBean != null) {
             Map<String, String> map = new HashMap<>();
-            map.put("defaultZone", "http://localhost:8761/eureka/,http://vm-node-a.platform:8761/eureka/,http://vm-node-b.platform:8761/eureka/,http://vm-node-c.platform:8761/eureka/");
+            map.put("defaultZone", "http://vm-node-a.platform:8761/eureka/,http://vm-node-b.platform:8761/eureka/,http://vm-node-c.platform:8761/eureka/");
             eurekaClientConfigBean.setServiceUrl(map);
             eurekaClientConfigBean.setRegisterWithEureka(true);
             eurekaClientConfigBean.setFetchRegistry(true);
