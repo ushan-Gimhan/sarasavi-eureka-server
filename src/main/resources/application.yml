@@ -8,13 +8,12 @@ spring:
 eureka:
   instance:
     hostname: ${EUREKA_HOSTNAME:localhost}
-
+    prefer-ip-address: false
   client:
-    register-with-eureka: false
-    fetch-registry: false
-
+    register-with-eureka: ${EUREKA_REGISTER_WITH_EUREKA:true}
+    fetch-registry: ${EUREKA_FETCH_REGISTRY:true}
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: ${EUREKA_SERVER_URLS:http://vm-node-a.platform:8761/eureka/,http://vm-node-b.platform:8761/eureka/,http://vm-node-c.platform:8761/eureka/}
 
   server:
     enable-self-preservation: false
