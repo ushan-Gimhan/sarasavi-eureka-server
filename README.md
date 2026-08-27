@@ -3,7 +3,9 @@
 ```
 Student Name:   S.K.M Ushan Gimhan
 Student ID:     241711098
+Slack Handle: Ushan Gimhan
 GCP Project ID: project-af908f5b-1cbf-40dc-9a7
+Course: ITS 2130 — Enterprise Cloud Architecture
 ```
 
 ## Project Description
