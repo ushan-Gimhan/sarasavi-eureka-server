@@ -11,15 +11,22 @@ spring:
 eureka:
   instance:
     prefer-ip-address: true
-    appname: service-registry
+    appname: SERVICE-REGISTRY
+    hostname: ${HOSTNAME:localhost}
+    instance-id: ${spring.application.name}:${server.port}
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://vm-node-a.platform:8761/eureka/,http://vm-node-b.platform:8761/eureka/,http://vm-node-c.platform:8761/eureka/
+      # Self URL first (ensures SERVICE-REGISTRY appears in dashboard) + all 3 peer nodes.
+      # Peers that are unreachable appear in 'unavailable-replicas'; reachable ones in 'available-replicas'.
+      # Override EUREKA_SERVER_URL with the GCP node's own Eureka URL in production.
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/},http://vm-node-a.platform:8761/eureka/,http://vm-node-b.platform:8761/eureka/,http://vm-node-c.platform:8761/eureka/
   server:
     enable-self-preservation: false
     eviction-interval-timer-in-ms: 60000
+    wait-time-in-ms-when-sync-empty: 0
+    min-renewals-percent: 0.0
 
 management:
   endpoints:
